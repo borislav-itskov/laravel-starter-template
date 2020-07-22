@@ -1,0 +1,3 @@
+        $this->app->singleton({{ service }}::class, function ($app) {
+            return new {{ service }}(app({{ repo }}::class));
+        });
