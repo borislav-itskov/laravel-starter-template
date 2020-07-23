@@ -91,6 +91,12 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sqlite_phpunit' => [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ],
+
     ],
 
     /*
