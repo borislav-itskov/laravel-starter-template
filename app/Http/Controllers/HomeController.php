@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,22 @@ class HomeController extends Controller
      * @param  UserService $userService
      * @return Renderable
      */
-    public function index(UserService $userService)
+    public function index()
     {
-        $users = $userService->findAll();
-        return view('welcome');
+        $users = User::whereIsAdmin(1)->get();
+        return view('home', compact('users'));
+    }
+
+    /**
+     * The homepage, service edition
+     *
+     * @method GET
+     * @param  UserService $userService
+     * @return Renderable
+     */
+    public function indexServices(UserService $userService)
+    {
+        $users = $userService->findAdmins();
+        return view('home', compact('users'));
     }
 }
