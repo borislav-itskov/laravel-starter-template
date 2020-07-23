@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'name' => Str::random(10),
                 'email' => Str::random(10),
                 'password' => bcrypt(Str::random(10)),
+                'is_admin' => ($i % 2 == 0),
             ];
         }
         $userService->bulkInsert($users);

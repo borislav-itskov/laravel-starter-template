@@ -30,4 +30,14 @@ class UserRepositoryTest extends IntegrationTestCase
 
         $this->assertNotEmpty($users);
     }
+
+    public function test_finding_the_admin_users_successfully()
+    {
+        $users = $this->userRepository->findAdmins()->toArray();
+
+        $this->assertNotEmpty($users);
+        foreach ($users as $user) {
+            $this->assertEquals(1, $user['is_admin']);
+        }
+    }
 }
