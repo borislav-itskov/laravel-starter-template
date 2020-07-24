@@ -75,7 +75,7 @@ class SetupModel extends GeneratorCommand
         $this->register('service');
 
         // generate a migration
-        $migrationName = strtolower(trim($this->argument('name'))) . 's';
+        $migrationName = Str::snake(lcfirst(trim($this->argument('name'))) . 's');
         $this->call('make:migration', [
             'name' => 'create_' . $migrationName . '_table',
             '--create' => $migrationName,
