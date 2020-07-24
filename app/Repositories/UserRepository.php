@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Role;
 use Illuminate\Support\Collection;
 
 class UserRepository extends BaseRepository
@@ -14,5 +15,13 @@ class UserRepository extends BaseRepository
     public function findAdmins(): Collection
     {
         return $this->model->whereIsAdmin(1)->get();
+
+        // return $this->model
+        //     ->select('users.*')
+        //     ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
+        //     ->where('user_roles.role_id', '=', $adminRole->id)
+        //     ->distinct()
+        //     ->get()
+        // ;
     }
 }

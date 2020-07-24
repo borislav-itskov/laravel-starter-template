@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Services\RoleService;
 use Illuminate\Support\Collection;
 
 class UserService extends BaseService
@@ -13,6 +14,10 @@ class UserService extends BaseService
      */
     public function findAdmins(): Collection
     {
+        // $roleService = app(RoleService::class);
+        // $adminRole = $roleService->findAdminRole();
+
+        // return $this->repo->findAdmins($adminRole);
         return $this->repo->findAdmins();
     }
 }
