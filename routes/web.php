@@ -15,3 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home-services', 'HomeController@indexServices');
+
+// duplicate routes for example purposes
+Route::get('/home-two', 'HomeController@secondIndex');
+Route::get('/home-services-two', 'HomeController@secondIndexServices');
+Route::get('/home-three', 'AdminController@thirdIndex');
+Route::get('/home-services-three', 'AdminController@thirdIndexServices');

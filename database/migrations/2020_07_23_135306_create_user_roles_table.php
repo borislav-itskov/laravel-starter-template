@@ -54,6 +54,7 @@ class CreateUserRolesTable extends Migration
         // find the admins
         $adminRole = DB::table('roles')->where('name', 'Admin')->get()->first();
         $admins = DB::table('users')
+            ->select('users.*')
             ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
             ->where('user_roles.role_id', '=', $adminRole->id)
             ->distinct()
