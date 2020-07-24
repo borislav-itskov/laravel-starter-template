@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class BaseRepository
+abstract class BaseRepository
 {
     /**
      * @var Model
