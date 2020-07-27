@@ -9,12 +9,19 @@ use Illuminate\Support\Facades\DB;
 abstract class BaseRepository
 {
     /**
+     * Use the model for creating, updating, deleting.
+     * Also, when you want to select something out of the
+     * ordinary convetions.
+     *
      * @var Model
      */
     protected $model;
 
     /**
-     * @var Builder
+     * Use this builder for all your select statements
+     * in the system.
+     *
+     * @var Illuminate\Database\Eloquent\Builder
      */
     protected $selectQuery;
 
@@ -27,7 +34,8 @@ abstract class BaseRepository
     {
         $this->model = $model;
         $this->selectQuery = $model->query()
-            ->whereNull($model->getTable() . '.deleted_at')
+            ->select($model->getTable() . '.*')
+            // ->whereNull($model->getTable() . '.deleted_at')
         ;
     }
 
@@ -83,17 +91,14 @@ abstract class BaseRepository
      * Delete a model and return the deleted ID
      *
      * @param  Model  $model
-     * @return int
+     * @return void
      */
-    public function delete(Model $model): int
+    public function delete(Model $model): void
     {
-        $deletedId = $model->id;
         $model->delete();
-        return $deletedId;
 
         // $model->deleted_at(date('Y-m-d H:i:s'));
         // $model->save();
-        // return $model->id;
     }
 
     /**
@@ -104,9 +109,22 @@ abstract class BaseRepository
      */
     public function bulkInsert(array $data): void
     {
-        // TO DO: think of a clever way to add timestaps
         foreach (array_chunk($data, 5000) as $insertArray) {
             DB::table($this->model->getTable())->insert($insertArray);
         }
+    }
+
+    /**
+     * Delete all the entries in the passed collection
+     *
+     * @param  Collection $delete
+     * @return void
+     */
+    public function bulkDelete(Collection $delete): void
+    {
+        DB::table($this->model->getTable())
+            ->whereIn('id', $delete->pluck('id'))
+            ->delete()
+        ;
     }
 }
