@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,7 @@ abstract class BaseRepository
      *
      * @var Illuminate\Database\Eloquent\Builder
      */
-    protected $selectQuery;
+    private $selectQuery;
 
     /**
      * Construct
@@ -40,6 +41,16 @@ abstract class BaseRepository
     }
 
     /**
+     * Get the select query builder
+     *
+     * @return Builder
+     */
+    public function getBuilder(): Builder
+    {
+        return clone $this->selectQuery;
+    }
+
+    /**
      * Find all rows and return them as a Collection
      *
      * @param  array $options - all kinds of options that
@@ -48,7 +59,7 @@ abstract class BaseRepository
      */
     public function findAll(array $options = []): Collection
     {
-        return $this->selectQuery->get();
+        return $this->getBuilder()->get();
     }
 
     /**
@@ -59,7 +70,7 @@ abstract class BaseRepository
      */
     public function findById(int $id): ?Model
     {
-        return $this->selectQuery->find($id);
+        return $this->getBuilder()->find($id);
     }
 
     /**
