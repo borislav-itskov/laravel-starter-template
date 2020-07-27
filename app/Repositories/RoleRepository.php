@@ -13,6 +13,6 @@ class RoleRepository extends BaseRepository
      */
     public function findAdminRole(): Role
     {
-        return $this->model->whereName('Admin')->get()->first();
+        return $this->selectQuery->whereName('Admin')->get()->first();
     }
 }

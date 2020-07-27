@@ -18,14 +18,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $adminRole = Role::whereName('Admin')->get()->first();
-        // $users = User::select('users.*')
-        //     ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
-        //     ->where('user_roles.role_id', '=', $adminRole->id)
-        //     ->distinct()
-        //     ->get()
-        // ;
-        $users = User::whereIsAdmin(1)->get();
+        $adminRole = Role::whereName('Admin')->get()->first();
+        $users = User::select('users.*')
+            ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
+            ->where('user_roles.role_id', '=', $adminRole->id)
+            ->distinct()
+            ->get()
+        ;
         return view('home', compact('users'));
     }
 
@@ -51,7 +50,13 @@ class HomeController extends Controller
      */
     public function secondIndex()
     {
-        $users = User::whereIsAdmin(1)->get();
+        $adminRole = Role::whereName('Admin')->get()->first();
+        $users = User::select('users.*')
+            ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
+            ->where('user_roles.role_id', '=', $adminRole->id)
+            ->distinct()
+            ->get()
+        ;
         return view('home', compact('users'));
     }
 

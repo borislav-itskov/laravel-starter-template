@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -17,7 +18,13 @@ class AdminController extends Controller
      */
     public function thirdIndex()
     {
-        $users = User::whereIsAdmin(1)->get();
+        $adminRole = Role::whereName('Admin')->get()->first();
+        $users = User::select('users.*')
+            ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
+            ->where('user_roles.role_id', '=', $adminRole->id)
+            ->distinct()
+            ->get()
+        ;
         return view('home', compact('users'));
     }
 

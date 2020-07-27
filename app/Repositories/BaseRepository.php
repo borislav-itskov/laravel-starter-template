@@ -14,6 +14,11 @@ abstract class BaseRepository
     protected $model;
 
     /**
+     * @var Builder
+     */
+    protected $selectQuery;
+
+    /**
      * Construct
      *
      * @param Model $model
@@ -21,6 +26,9 @@ abstract class BaseRepository
     public function __construct(Model $model)
     {
         $this->model = $model;
+        $this->selectQuery = $model->query()
+            ->whereNull($model->getTable() . '.deleted_at')
+        ;
     }
 
     /**
@@ -32,7 +40,7 @@ abstract class BaseRepository
      */
     public function findAll(array $options = []): Collection
     {
-        return $this->model->all();
+        return $this->selectQuery->get();
     }
 
     /**
@@ -43,7 +51,7 @@ abstract class BaseRepository
      */
     public function findById(int $id): ?Model
     {
-        return $this->model->find($id);
+        return $this->selectQuery->find($id);
     }
 
     /**
@@ -82,6 +90,10 @@ abstract class BaseRepository
         $deletedId = $model->id;
         $model->delete();
         return $deletedId;
+
+        // $model->deleted_at(date('Y-m-d H:i:s'));
+        // $model->save();
+        // return $model->id;
     }
 
     /**
