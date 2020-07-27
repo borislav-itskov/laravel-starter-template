@@ -14,9 +14,9 @@ class UserRepository extends BaseRepository
      */
     public function findAdmins(): Collection
     {
-        return $this->model->whereIsAdmin(1)->get();
+        return $this->getBuilder()->whereIsAdmin(1)->get();
 
-        // return $this->model
+        // return $this->getBuilder()
         //     ->select('users.*')
         //     ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
         //     ->where('user_roles.role_id', '=', $adminRole->id)
