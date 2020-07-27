@@ -13,6 +13,6 @@ class UserRepository extends BaseRepository
      */
     public function findAdmins(): Collection
     {
-        return $this->model->whereIsAdmin(1)->get();
+        return $this->getBuilder()->whereIsAdmin(1)->get();
     }
 }
