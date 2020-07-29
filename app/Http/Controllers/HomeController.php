@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UserService;
+use App\Services\CardService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,12 +11,12 @@ class HomeController extends Controller
      * The homepage.
      *
      * @method GET
-     * @param  UserService $userService
+     * @param  CardService $cardService
      * @return Renderable
      */
-    public function index(UserService $userService)
+    public function index(CardService $cardService)
     {
-        $users = $userService->findAll();
-        return view('welcome');
+        $cards = $cardService->findAll();
+        return view('welcome', compact('cards'));
     }
 }
