@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Formatters\CardFormatter;
 use App\Services\CardService;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,14 @@ class CardController extends Controller
      * @method GET
      * @return Illuminate\Contracts\Support\Renderable
      */
-    public function create(CardService $cardService)
+    public function create(
+        CardService $cardService,
+        CardFormatter $cardFormatter
+    )
     {
         $types = $cardService->getTypes();
-        return view('create', $types);
+        $fields = $cardFormatter->getFormFields($types);
+        return view('create', compact('types', 'fields'));
     }
 
     /**

@@ -44,7 +44,9 @@ class CardService extends BaseService
     }
 
     /**
-     * Get all the card types defined
+     * Get all the card types defined.
+     * These are the cards that implement the $this->interfaceName
+     * interface.
      *
      * @return array
      */
@@ -73,5 +75,16 @@ class CardService extends BaseService
         }
 
         return $types;
+    }
+
+    /**
+     * Init a cardable class
+     *
+     * @param  string $class
+     * @return Cardable
+     */
+    public function initCardable(string $class): Cardable
+    {
+        return new $class();
     }
 }
