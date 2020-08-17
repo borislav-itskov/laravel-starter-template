@@ -20,8 +20,7 @@ class UserSeeder extends Seeder
             $users[] = [
                 'name' => Str::random(10),
                 'email' => Str::random(10),
-                'password' => bcrypt(Str::random(10)),
-                'is_admin' => ($i % 2 == 0),
+                'password' => bcrypt(Str::random(10))
             ];
         }
         $userService->bulkInsert($users);

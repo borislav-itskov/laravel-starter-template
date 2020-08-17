@@ -48,7 +48,7 @@ class CreateUserRolesTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin');
+            $table->boolean('is_admin')->default(0);
         });
 
         // find the admins

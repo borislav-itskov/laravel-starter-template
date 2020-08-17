@@ -17,7 +17,7 @@ class UserService extends BaseService
         // $roleService = app(RoleService::class);
         // $adminRole = $roleService->findAdminRole();
 
-        // return $this->repo->findAdmins($adminRole);
+        // return $this->repo->findByRole($adminRole);
         return $this->repo->findAdmins();
     }
 }

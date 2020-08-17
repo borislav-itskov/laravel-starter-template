@@ -2,6 +2,7 @@
 
 namespace Tests\Integration;
 
+use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use Tests\IntegrationTestCase;
 
@@ -33,11 +34,14 @@ class UserRepositoryTest extends IntegrationTestCase
 
     public function test_finding_the_admin_users_successfully()
     {
-        $users = $this->userRepository->findAdmins()->toArray();
-
+        $roleRepo = app(RoleRepository::class);
+        $adminRole = $roleRepo->findAdminRole();
+        $users = $this->userRepository->findByRole($adminRole);
         $this->assertNotEmpty($users);
+
+        // load the roles
         foreach ($users as $user) {
-            $this->assertEquals(1, $user['is_admin']);
+            $this->assertTrue($user->roles()->get()->contains($adminRole->id));
         }
     }
 }

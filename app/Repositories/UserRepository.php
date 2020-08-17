@@ -15,13 +15,22 @@ class UserRepository extends BaseRepository
     public function findAdmins(): Collection
     {
         return $this->getBuilder()->whereIsAdmin(1)->get();
+    }
 
-        // return $this->getBuilder()
-        //     ->select('users.*')
-        //     ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
-        //     ->where('user_roles.role_id', '=', $adminRole->id)
-        //     ->distinct()
-        //     ->get()
-        // ;
+    /**
+     * Find users by passed role.
+     *
+     * @param  Role   $role
+     * @return Collection
+     */
+    public function findByRole(Role $role): Collection
+    {
+        return $this->getBuilder()
+            ->select('users.*')
+            ->leftJoin('user_roles', 'user_roles.user_id', '=', 'users.id')
+            ->where('user_roles.role_id', '=', $role->id)
+            ->distinct()
+            ->get()
+        ;
     }
 }
