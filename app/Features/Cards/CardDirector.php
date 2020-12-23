@@ -12,19 +12,19 @@ class CardDirector
      * @param  array  $data
      * @return Card
      */
-    public function getBuilder(string $type): CardableBuilder
+    public function getFactory(string $type): CardableFactory
     {
         switch ($type) {
             case 'Spell':
-                return app(SpellBuilder::class);
+                return app(SpellFactory::class);
                 break;
 
             case 'Trap':
-                return app(TrapBuilder::class);
+                return app(TrapFactory::class);
                 break;
 
             case 'Monster':
-                return app(MonsterBuilder::class);
+                return app(MonsterFactory::class);
                 break;
             
             default:

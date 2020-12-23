@@ -16,7 +16,7 @@ class CardController extends Controller
     public function store(Request $request, CardDirector $cardDirector)
     {
         $data = $request->all();
-        $cardBuilder = $cardDirector->getBuilder($data['type']);
+        $cardBuilder = $cardDirector->getFactory($data['type']);
         return $cardBuilder->create($data);
     }
 }

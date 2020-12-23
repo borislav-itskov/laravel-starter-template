@@ -3,25 +3,19 @@
 namespace App\Features\Cards;
 
 use App\Models\Card;
-use App\Services\CardService;
 use App\Services\MonsterService;
 
-class MonsterBuilder implements CardableBuilder
+class MonsterFactory extends CardFactory implements CardableFactory
 {
-    /**
-     * @var App\Services\CardService
-     */
-    private $cardService;
-
     /**
      * @var App\Services\MonsterService
      */
     private $monsterService;
 
-    public function __construct(CardService $cardService, MonsterService $monsterService)
+    public function __construct()
     {
-        $this->cardService = $cardService;
-        $this->monsterService = $monsterService;
+        parent::__construct();
+        $this->monsterService = app(MonsterService::class);
     }
 
     /**

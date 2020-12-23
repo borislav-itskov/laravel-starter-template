@@ -4,15 +4,12 @@ namespace App\Features\Cards;
 
 use App\Models\Card;
 
-class TrapBuilder implements CardableBuilder
+interface CardableFactory
 {
     /**
      * Describe how to create a card.
      *
      * @return 
      */
-    public function create(): Card
-    {
-        return new Card();
-    }
+    public function create(array $data): Card;
 }

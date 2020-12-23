@@ -11,5 +11,5 @@ class Trap extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['card_id', 'effect', 'trigger'];
 }
