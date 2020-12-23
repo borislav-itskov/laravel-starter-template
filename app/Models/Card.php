@@ -11,5 +11,5 @@ class Card extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['type', 'name'];
 }

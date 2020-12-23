@@ -1899,6 +1899,17 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/bobby/Projects/yugioh/resources/js/components/CreateComponent.vue: Unexpected token, expected \",\" (24:32)\n\n\u001b[0m \u001b[90m 22 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m      \u001b[90m// send the request\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 | \u001b[39m      \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$http\u001b[33m.\u001b[39mpost(\u001b[32m'/texts/'\u001b[39m event\u001b[33m.\u001b[39mtarget\u001b[33m.\u001b[39mvalue \u001b[33m,\u001b[39m formData)\u001b[33m.\u001b[39mthen(\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 | \u001b[39m        \u001b[90m// success handler\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 26 | \u001b[39m        response \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 27 | \u001b[39m          \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msort \u001b[33m=\u001b[39m response\u001b[33m.\u001b[39mbody\u001b[33m.\u001b[39msort\u001b[0m\n    at Parser._raise (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:757:17)\n    at Parser.raiseWithData (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:750:17)\n    at Parser.raise (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:744:17)\n    at Parser.unexpected (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:8834:16)\n    at Parser.expect (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:8820:28)\n    at Parser.parseCallExpressionArguments (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9865:14)\n    at Parser.parseSubscript (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9785:31)\n    at Parser.parseSubscripts (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9711:19)\n    at Parser.parseExprSubscripts (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9694:17)\n    at Parser.parseMaybeUnary (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9668:21)\n    at Parser.parseExprOps (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9538:23)\n    at Parser.parseMaybeConditional (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9511:23)\n    at Parser.parseMaybeAssign (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9466:21)\n    at Parser.parseExpression (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9418:23)\n    at Parser.parseStatementContent (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:11339:23)\n    at Parser.parseStatement (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:11210:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:11785:25)\n    at Parser.parseBlockBody (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:11771:10)\n    at Parser.parseBlock (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:11755:10)\n    at Parser.parseFunctionBody (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10758:24)\n    at Parser.parseFunctionBodyAndFinish (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10741:10)\n    at Parser.parseMethod (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10703:10)\n    at Parser.parseObjectMethod (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10619:19)\n    at Parser.parseObjPropValue (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10661:23)\n    at Parser.parseObjectMember (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10585:10)\n    at Parser.parseObj (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10494:25)\n    at Parser.parseExprAtom (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10090:28)\n    at Parser.parseExprSubscripts (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9688:23)\n    at Parser.parseMaybeUnary (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9668:21)\n    at Parser.parseExprOps (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9538:23)\n    at Parser.parseMaybeConditional (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9511:23)\n    at Parser.parseMaybeAssign (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:9466:21)\n    at Parser.parseObjectProperty (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10636:101)\n    at Parser.parseObjPropValue (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10661:101)\n    at Parser.parseObjectMember (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10585:10)\n    at Parser.parseObj (/home/bobby/Projects/yugioh/node_modules/@babel/parser/lib/index.js:10494:25)");
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -19549,6 +19560,49 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateComponent.vue?vue&type=template&id=75da6b46&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateComponent.vue?vue&type=template&id=75da6b46& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("form", [
+    _c("label", [_vm._v("Type")]),
+    _vm._v(" "),
+    _c(
+      "select",
+      { attrs: { name: "type" }, on: { change: _vm.get_form_fields } },
+      [
+        _c("option", { attrs: { disabled: "true", selected: "true" } }, [
+          _vm._v("Choose")
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.types, function(type, name) {
+          return _c("option", { domProps: { value: type } }, [
+            _vm._v(_vm._s(name))
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -33315,6 +33369,7 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./components/CreateComponent.vue": "./resources/js/components/CreateComponent.vue",
 	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue"
 };
 
@@ -33411,6 +33466,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/CreateComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateComponent_vue_vue_type_template_id_75da6b46___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateComponent.vue?vue&type=template&id=75da6b46& */ "./resources/js/components/CreateComponent.vue?vue&type=template&id=75da6b46&");
+/* harmony import */ var _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CreateComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateComponent_vue_vue_type_template_id_75da6b46___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateComponent_vue_vue_type_template_id_75da6b46___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CreateComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/CreateComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CreateComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateComponent.vue?vue&type=template&id=75da6b46&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/CreateComponent.vue?vue&type=template&id=75da6b46& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_template_id_75da6b46___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CreateComponent.vue?vue&type=template&id=75da6b46& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateComponent.vue?vue&type=template&id=75da6b46&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_template_id_75da6b46___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateComponent_vue_vue_type_template_id_75da6b46___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

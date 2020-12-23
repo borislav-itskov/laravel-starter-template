@@ -18,7 +18,7 @@ class CreateMonstersTable extends Migration
             $table->foreignId('card_id')->constrained()->onDelete('cascade');
             $table->string('effect')->nullable();
             $table->integer('attack_points');
-            $table->integer('defense_points');
+            $table->integer('defence_points');
             $table->timestamps();
         });
     }
