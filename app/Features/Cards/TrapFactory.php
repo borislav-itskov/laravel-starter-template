@@ -3,6 +3,7 @@
 namespace App\Features\Cards;
 
 use App\Models\Card;
+use Illuminate\Http\Request;
 use App\Services\TrapService;
 
 class TrapFactory extends CardFactory implements CardableFactory
@@ -16,6 +17,19 @@ class TrapFactory extends CardFactory implements CardableFactory
     {
         parent::__construct();
         $this->trapService = app(TrapService::class);
+    }
+
+    /**
+     * Describe how to validate a trap card.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function validateCreate(Request $request): array
+    {
+        $this->validator->addSharedRules();
+        $this->validator->addTrapRules();
+        return $this->validator->execute($request);
     }
 
     /**

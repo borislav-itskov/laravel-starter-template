@@ -8,6 +8,7 @@ use App\Services\TrapService;
 use App\Services\SpellService;
 use App\Services\MonsterService;
 use App\Features\Cards\CardDirector;
+use App\Validators\CardValidator;
 
 class CardController extends Controller
 {
@@ -17,10 +18,15 @@ class CardController extends Controller
      * @method POST
      * @return Illuminate\Support\Facades\Redirect
      */
-    public function storeFactory(Request $request, CardDirector $cardDirector)
+    public function storeFactory(
+        Request $request,
+        CardDirector $cardDirector,
+        CardValidator $validator
+    )
     {
-        $data = $request->all();
-        $cardBuilder = $cardDirector->getFactory($data['type']);
+        $type = $validator->validateType($request);
+        $cardBuilder = $cardDirector->getFactory($type);
+        $data = $cardBuilder->validateCreate($request);
         return $cardBuilder->create($data);
     }
 

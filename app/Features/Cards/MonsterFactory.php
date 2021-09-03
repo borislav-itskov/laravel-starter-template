@@ -3,6 +3,7 @@
 namespace App\Features\Cards;
 
 use App\Models\Card;
+use Illuminate\Http\Request;
 use App\Services\MonsterService;
 
 class MonsterFactory extends CardFactory implements CardableFactory
@@ -16,6 +17,19 @@ class MonsterFactory extends CardFactory implements CardableFactory
     {
         parent::__construct();
         $this->monsterService = app(MonsterService::class);
+    }
+
+    /**
+     * Describe how to validate a monster card.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function validateCreate(Request $request): array
+    {
+        $this->validator->addSharedRules();
+        $this->validator->addMonsterRules();
+        return $this->validator->execute($request);
     }
 
     /**
