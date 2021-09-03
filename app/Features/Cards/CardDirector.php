@@ -26,7 +26,7 @@ class CardDirector
             case 'Monster':
                 return app(MonsterFactory::class);
                 break;
-            
+
             default:
                 throw new \Exception("Undefined card type", 1);
                 break;

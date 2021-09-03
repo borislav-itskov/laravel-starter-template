@@ -21,7 +21,7 @@ class SpellFactory extends CardFactory implements CardableFactory
     /**
      * Describe how to create a card.
      *
-     * @return 
+     * @return Card
      */
     public function create(array $data): Card
     {

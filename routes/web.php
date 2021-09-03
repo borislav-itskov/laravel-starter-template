@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::post('/cards', 'CardController@store')->name('card_create');
+Route::post('/cards-factory', 'CardController@storeFactory');
+Route::post('/cards-if', 'CardController@storeIfStatements');
