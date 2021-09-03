@@ -108,23 +108,47 @@ class CardController extends Controller
         CardValidator $validator
     )
     {
-        $data = $validator->validateUpdate($request, $card->type);
+        $newType = $validator->validateTypeUpdate($request);
+        $oldType = $card->type;
+        $cardType = !is_null($newType) ? $newType : $card->type;
+        $hasChangeRequest = !is_null($newType) && $newType != $oldType;
+        $data = $validator->validateUpdate($request, $cardType);
         $card = $cardService->update($card, $data);
+        $data['card_id'] = $card->id;
+
+        // decl
+        $spellService = app(SpellService::class);
+        $trapService = app(TrapService::class);
+        $monsterService = app(MonsterService::class);
 
         switch ($card->type) {
             case 'Spell':
-                $spellService = app(SpellService::class);
-                $spellService->update($card->spell, $data);
+                $spellCard = $card->spell;
+                if ($spellCard) {
+                    $spellService->update($card->spell, $data);
+                } else {
+                    $spellService->create($data);
+                }
                 break;
 
             case 'Trap':
-                $trapService = app(TrapService::class);
-                $trapService->update($card->trap, $data);
+                $trapCard = $card->trap;
+
+                if ($trapCard) {
+                    $trapService->update($trapCard, $data);
+                } else {
+                    $trapService->create($data);
+                }
                 break;
 
             case 'Monster':
-                $monsterService = app(MonsterService::class);
-                $monsterService->update($card->monster, $data);
+                $monsterCard = $card->trap;
+
+                if ($monsterCard) {
+                    $monsterService->update($monsterCard, $data);
+                } else {
+                    $monsterService->create($data);
+                }
                 break;
 
             default:
@@ -132,6 +156,27 @@ class CardController extends Controller
                 break;
         }
 
-        return $card;
+        // sync the data
+        if ($hasChangeRequest) {
+            switch ($oldType) {
+                case 'Spell':
+                    $spellService->delete($card->spell, $data);
+                    break;
+
+                case 'Trap':
+                    $trapService->delete($card->trap, $data);
+                    break;
+
+                case 'Monster':
+                    $monsterService->delete($card->monster, $data);
+                    break;
+
+                default:
+                    throw new \Exception("Undefined card type", 1);
+                    break;
+            }
+        }
+
+        return $card->refresh();
     }
 }

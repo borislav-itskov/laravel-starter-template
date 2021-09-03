@@ -73,11 +73,11 @@ abstract class BaseService
      * Delete a model and return the deleted ID
      *
      * @param  Model  $model
-     * @return int
+     * @return void
      */
-    public function delete(Model $model): int
+    public function delete(Model $model): void
     {
-        return $this->repo->delete($model);
+        $this->repo->delete($model);
     }
 
     /**

@@ -121,12 +121,14 @@ class CardValidator
      *
      * @return array
      */
-    private function getTypeRules(): array
+    private function getTypeRules(bool $update = false): array
     {
         $validType = ['Monster', 'Spell', 'Trap'];
 
+        $isRequired = $update ? 'nullable' : 'required';
+
         return [
-            'type' => ['required', 'string', Rule::in($validType)]
+            'type' => [$isRequired, 'string', Rule::in($validType)]
         ];
     }
 
@@ -139,6 +141,19 @@ class CardValidator
     public function validateType(Request $request): string
     {
         return $request->validate($this->getTypeRules())['type'];
+    }
+
+    /**
+     * Validate the card type and return it.
+     *
+     * @param Request $request
+     * @return string|null
+     */
+    public function validateTypeUpdate(Request $request): ?string
+    {
+        $data = $request->validate($this->getTypeRules(true));
+
+        return !empty($data) ? $data['type'] : null;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -207,9 +222,6 @@ class CardValidator
     public function validateUpdate(Request $request, string $type): array
     {
         $rules = $this->getValidationRulesAccordingToType($type);
-        unset($rules['type']);
-        $data = $request->all();
-        $rules = array_intersect_key($rules, $data);
         return $request->validate($rules);
     }
 }
