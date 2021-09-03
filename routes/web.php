@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/cards-factory', 'CardController@storeFactory');
 Route::post('/cards-if', 'CardController@storeIfStatements');
+
+Route::patch('/cards-factory/{card}', 'CardController@patchFactory');
+Route::patch('/cards-if/{card}', 'CardController@patchIfStatements');

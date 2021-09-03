@@ -28,6 +28,7 @@ class SpellFactory extends CardFactory implements CardableFactory
     public function validateCreate(Request $request): array
     {
         $this->validator->addSharedRules();
+        $this->validator->addTypeRules();
         $this->validator->addSpellRules();
         return $this->validator->execute($request);
     }
@@ -39,14 +40,38 @@ class SpellFactory extends CardFactory implements CardableFactory
      */
     public function create(array $data): Card
     {
-        // create the card
         $card = $this->cardService->create($data);
-
-        // create it's monster data
         $data['card_id'] = $card->id;
         $this->spellService->create($data);
-
-        // return it
         return $card;
+    }
+
+    /**
+     * Describe how to update a card.
+     *
+     * @param Card $card
+     * @param array $data
+     * @return Card
+     */
+    public function update(Card $card, array $data): Card
+    {
+        $card = $this->cardService->update($card, $data);
+        $this->spellService->update($card->spell, $data);
+        return $card;
+    }
+
+    /**
+     * Describe how to validate update of a card.
+     *
+     * @param Card $card
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function validateUpdate(Card $card, Request $request): array
+    {
+        $this->validator->addSharedRules();
+        $this->validator->addSpellRules();
+        $this->validator->leaveOnlyForUpdate($request);
+        return $this->validator->execute($request);
     }
 }

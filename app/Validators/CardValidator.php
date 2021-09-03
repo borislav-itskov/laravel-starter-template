@@ -15,6 +15,16 @@ class CardValidator
     private $rules = [];
 
     /**
+     * Add the type rules when needed
+     *
+     * @return void
+     */
+    public function addTypeRules(): void
+    {
+        $this->rules = array_merge($this->rules, $this->getTypeRules());
+    }
+
+    /**
      * Add the shared rules to the global rules.
      *
      * @return void
@@ -23,7 +33,6 @@ class CardValidator
     {
         $this->rules = array_merge(
             $this->rules,
-            $this->getTypeRules(),
             [
                 'name' => ['required', 'string']
             ]
@@ -79,6 +88,20 @@ class CardValidator
     }
 
     /**
+     * Leave only the rules that exists in the request array
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function leaveOnlyForUpdate(Request $request): void
+    {
+        $this->rules = array_intersect_key(
+            $this->rules,
+            $request->all()
+        );
+    }
+
+    /**
      * Execute the validation.
      *
      * @param Request $request
@@ -123,13 +146,12 @@ class CardValidator
     //////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Validate the create of a card by if statements part
+     * Get the card validation rules.
      *
-     * @param Request $request
      * @param string $type
      * @return array
      */
-    public function validateCreate(Request $request, string $type): array
+    private function getValidationRulesAccordingToType(string $type): array
     {
         $rules = array_merge(
             $this->getTypeRules(),
@@ -159,6 +181,35 @@ class CardValidator
                 break;
         }
 
+        return $rules;
+    }
+
+    /**
+     * Validate the create of a card by if statements part
+     *
+     * @param Request $request
+     * @param string $type
+     * @return array
+     */
+    public function validateCreate(Request $request, string $type): array
+    {
+        $rules = $this->getValidationRulesAccordingToType($type);
+        return $request->validate($rules);
+    }
+
+    /**
+     * Validate the create of a card by if statements part
+     *
+     * @param Request $request
+     * @param string $type
+     * @return array
+     */
+    public function validateUpdate(Request $request, string $type): array
+    {
+        $rules = $this->getValidationRulesAccordingToType($type);
+        unset($rules['type']);
+        $data = $request->all();
+        $rules = array_intersect_key($rules, $data);
         return $request->validate($rules);
     }
 }
