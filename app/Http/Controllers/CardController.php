@@ -38,10 +38,12 @@ class CardController extends Controller
      */
     public function storeIfStatements(
         Request $request,
-        CardService $cardService
+        CardService $cardService,
+        CardValidator $validator
     )
     {
-        $data = $request->all();
+        $type = $validator->validateType($request);
+        $data = $validator->validateCreate($request, $type);
         $card = $cardService->create($data);
         $data['card_id'] = $card->id;
 

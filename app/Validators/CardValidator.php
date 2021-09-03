@@ -15,20 +15,6 @@ class CardValidator
     private $rules = [];
 
     /**
-     * Get the type rules.
-     *
-     * @return array
-     */
-    private function getTypeRules(): array
-    {
-        $validType = ['Monster', 'Spell', 'Trap'];
-
-        return [
-            'type' => ['required', 'string', Rule::in($validType)]
-        ];
-    }
-
-    /**
      * Add the shared rules to the global rules.
      *
      * @return void
@@ -93,6 +79,35 @@ class CardValidator
     }
 
     /**
+     * Execute the validation.
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function execute(Request $request): array
+    {
+        return $request->validate($this->rules);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////                     SHARED PART                   //////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Get the type rules.
+     *
+     * @return array
+     */
+    private function getTypeRules(): array
+    {
+        $validType = ['Monster', 'Spell', 'Trap'];
+
+        return [
+            'type' => ['required', 'string', Rule::in($validType)]
+        ];
+    }
+
+    /**
      * Validate the card type and return it.
      *
      * @param Request $request
@@ -103,14 +118,47 @@ class CardValidator
         return $request->validate($this->getTypeRules())['type'];
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////                 IF STATEMENTS PART                   ///////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////
+
     /**
-     * Execute the validation.
+     * Validate the create of a card by if statements part
      *
      * @param Request $request
+     * @param string $type
      * @return array
      */
-    public function execute(Request $request): array
+    public function validateCreate(Request $request, string $type): array
     {
-        return $request->validate($this->rules);
+        $rules = array_merge(
+            $this->getTypeRules(),
+            [
+                'name' => ['required', 'string']
+            ]
+        );
+
+        switch ($type) {
+            case 'Spell':
+                $rules['effect'] = ['required', 'string'];
+                break;
+
+            case 'Trap':
+                $rules['effect'] = ['required', 'string'];
+                $rules['trigger'] = ['required', 'string'];
+                break;
+
+            case 'Monster':
+                $rules['effect'] = ['nullable', 'string'];
+                $rules['attack_points'] = ['required', 'integer'];
+                $rules['defence_points'] = ['required', 'integer'];
+                break;
+
+            default:
+                throw new \Exception("Undefined card type", 1);
+                break;
+        }
+
+        return $request->validate($rules);
     }
 }
