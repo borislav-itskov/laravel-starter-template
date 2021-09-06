@@ -74,4 +74,45 @@ class SpellFactory extends CardFactory implements CardableFactory
         $this->validator->leaveOnlyForUpdate($request);
         return $this->validator->execute($request);
     }
+
+    /**
+     * Describe how to validate the change of the type of a card.
+     *
+     * @param Card $card
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function validateTypeChange(Card $card, Request $request): array
+    {
+        $this->validator->addSharedRules();
+        $this->validator->leaveOnlyForUpdate($request);
+        $this->validator->addSpellRules();
+        return $this->validator->execute($request);
+    }
+
+    /**
+     * Describe actions after the type of a card has been changed.
+     *
+     * @param Card $card
+     * @return Card
+     */
+    public function quit(Card $card): Card
+    {
+        $this->spellService->delete($card->spell);
+        return $card->refresh();
+    }
+
+    /**
+     * Describe how to update a card when it's type has changed.
+     *
+     * @param Card $card
+     * @param array $data
+     * @return Card
+     */
+    public function updateType(Card $card, array $data): Card
+    {
+        $card = $this->cardService->update($card, $data);
+        $this->spellService->create($data);
+        return $card->refresh();
+    }
 }

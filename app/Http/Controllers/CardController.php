@@ -10,6 +10,7 @@ use App\Services\SpellService;
 use App\Services\MonsterService;
 use App\Validators\CardValidator;
 use App\Features\Cards\CardDirector;
+use App\Features\Cards\CardTypeChangeHandler;
 
 class CardController extends Controller
 {
@@ -41,9 +42,19 @@ class CardController extends Controller
     public function patchFactory(
         Card $card,
         Request $request,
+        CardValidator $validator,
+        CardTypeChangeHandler $changeHandler,
         CardDirector $cardDirector
     )
     {
+        $newType = $validator->validateTypeUpdate($request);
+        $oldType = $card->type;
+        $hasChangeRequest = !is_null($newType) && $newType != $oldType;
+
+        if ($hasChangeRequest) {
+            return $changeHandler->handle($card, $request);
+        }
+
         $cardBuilder = $cardDirector->getFactory($card->type);
         $data = $cardBuilder->validateUpdate($card, $request);
         return $cardBuilder->update($card, $data);
