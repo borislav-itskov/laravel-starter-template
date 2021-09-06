@@ -112,7 +112,13 @@ class CardController extends Controller
         $oldType = $card->type;
         $cardType = !is_null($newType) ? $newType : $card->type;
         $hasChangeRequest = !is_null($newType) && $newType != $oldType;
-        $data = $validator->validateUpdate($request, $cardType);
+
+        // set the validation according to the type request
+        $data = $hasChangeRequest
+            ? $validator->validateTypeChange($request, $cardType)
+            : $validator->validateUpdate($request, $cardType)
+        ;
+
         $card = $cardService->update($card, $data);
         $data['card_id'] = $card->id;
 

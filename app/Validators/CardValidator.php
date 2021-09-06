@@ -222,8 +222,52 @@ class CardValidator
     public function validateUpdate(Request $request, string $type): array
     {
         $rules = $this->getValidationRulesAccordingToType($type);
-        // $data = $request->all();
-        // $rules = array_intersect_key($rules, $data);
+        $data = $request->all();
+        $rules = array_intersect_key($rules, $data);
+        return $request->validate($rules);
+    }
+
+    /**
+     * Make the field for the new type required. Everything else should
+     * change only if passed in the request.
+     *
+     * @param Request $request
+     * @param string $newType
+     * @return void
+     */
+    public function validateTypeChange(Request $request, string $newType)
+    {
+        $rules = array_merge(
+            $this->getTypeRules(),
+            [
+                'name' => ['string'],
+            ]
+        );
+
+        $data = $request->all();
+        $rules = array_intersect_key($rules, $data);
+
+        switch ($newType) {
+            case 'Spell':
+                $rules['effect'] = ['required', 'string'];
+                break;
+
+            case 'Trap':
+                $rules['effect'] = ['required', 'string'];
+                $rules['trigger'] = ['required', 'string'];
+                break;
+
+            case 'Monster':
+                $rules['effect'] = ['nullable', 'string'];
+                $rules['attack_points'] = ['required', 'integer'];
+                $rules['defence_points'] = ['required', 'integer'];
+                break;
+
+            default:
+                throw new \Exception("Undefined card type", 1);
+                break;
+        }
+
         return $request->validate($rules);
     }
 }
