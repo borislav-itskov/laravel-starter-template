@@ -151,7 +151,7 @@ class CardValidator
      */
     public function validateTypeUpdate(Request $request): ?string
     {
-        $data = $request->validate($this->getTypeRules(true));
+        $request->validate($this->getTypeRules(true));
 
         return !empty($data) ? $data['type'] : null;
     }
@@ -222,6 +222,8 @@ class CardValidator
     public function validateUpdate(Request $request, string $type): array
     {
         $rules = $this->getValidationRulesAccordingToType($type);
+        // $data = $request->all();
+        // $rules = array_intersect_key($rules, $data);
         return $request->validate($rules);
     }
 }

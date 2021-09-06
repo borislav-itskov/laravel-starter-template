@@ -142,7 +142,7 @@ class CardController extends Controller
                 break;
 
             case 'Monster':
-                $monsterCard = $card->trap;
+                $monsterCard = $card->monster;
 
                 if ($monsterCard) {
                     $monsterService->update($monsterCard, $data);
