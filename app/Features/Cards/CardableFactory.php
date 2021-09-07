@@ -14,12 +14,4 @@ interface CardableFactory
      * @return Card
      */
     public function create(array $data): Card;
-
-    /**
-     * Describe how to validate a card.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function validateCreate(Request $request): array;
 }

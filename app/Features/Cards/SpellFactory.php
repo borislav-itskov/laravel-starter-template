@@ -4,7 +4,6 @@ namespace App\Features\Cards;
 
 use App\Models\Card;
 use App\Services\SpellService;
-use Illuminate\Http\Request;
 
 class SpellFactory extends CardFactory implements CardableFactory
 {
@@ -17,19 +16,6 @@ class SpellFactory extends CardFactory implements CardableFactory
     {
         parent::__construct();
         $this->spellService = app(SpellService::class);
-    }
-
-    /**
-     * Describe how to validate a spell card.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function validateCreate(Request $request): array
-    {
-        $this->validator->addSharedRules();
-        $this->validator->addSpellRules();
-        return $this->validator->execute($request);
     }
 
     /**

@@ -8,7 +8,6 @@ use App\Services\TrapService;
 use App\Services\SpellService;
 use App\Services\MonsterService;
 use App\Features\Cards\CardDirector;
-use App\Validators\CardValidator;
 
 class CardController extends Controller
 {
@@ -18,35 +17,15 @@ class CardController extends Controller
      * @method POST
      * @return Illuminate\Support\Facades\Redirect
      */
-    public function storeFactory(
-        Request $request,
-        CardDirector $cardDirector,
-        CardValidator $validator
-    )
-    {
-        $type = $validator->validateType($request);
-        $cardBuilder = $cardDirector->getFactory($type);
-        $data = $cardBuilder->validateCreate($request);
-        return $cardBuilder->create($data);
-    }
-
-    /**
-     * Create a card route
-     *
-     * @method POST
-     * @return Illuminate\Support\Facades\Redirect
-     */
     public function storeIfStatements(
         Request $request,
-        CardService $cardService,
-        CardValidator $validator
+        CardService $cardService
     )
     {
-        $type = $validator->validateType($request);
-        $data = $validator->validateCreate($request, $type);
+        $data = $request->all();
         $card = $cardService->create($data);
-        $data['card_id'] = $card->id;
 
+        $data['card_id'] = $card->id;
         switch ($card->type) {
             case 'Spell':
                 $spellService = app(SpellService::class);
@@ -69,5 +48,20 @@ class CardController extends Controller
         }
 
         return $card;
+    }
+
+    /**
+     * Create a card route
+     *
+     * @method POST
+     * @return Illuminate\Support\Facades\Redirect
+     */
+    public function storeFactory(
+        Request $request,
+        CardDirector $cardDirector
+    )
+    {
+        $cardBuilder = $cardDirector->getFactory($request->get('type'));
+        return $cardBuilder->create($request->all());
     }
 }
