@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,12 +10,10 @@ class HomeController extends Controller
      * The homepage.
      *
      * @method GET
-     * @param  UserService $userService
      * @return Renderable
      */
-    public function index(UserService $userService)
+    public function index()
     {
-        $users = $userService->findAll();
         return view('welcome');
     }
 }
